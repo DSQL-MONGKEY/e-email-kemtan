@@ -199,19 +199,19 @@ export default function LettersTable({ initialParams }: { initialParams: Initial
          </Button>
          </PopoverTrigger>
          <PopoverContent className="p-0" align="start">
-         <Calendar
-            mode="range"
-            selected={{ from: from ? new Date(from) : undefined, to: to ? new Date(to) : undefined }}
-            
-            onSelect={(range) => {
-               const f = range?.from ? format(range.from, 'yyyy-MM-dd') : undefined;
-               const t = range?.to ? format(range.to, 'yyyy-MM-dd') : undefined;
-               setFrom(f);
-               setTo(t);
-               setPage(1);
-            }}
-            numberOfMonths={2}
-          />
+            <Calendar
+               mode="range"
+               selected={{ from: from ? new Date(from) : undefined, to: to ? new Date(to) : undefined }}
+               
+               onSelect={(range) => {
+                  const f = range?.from ? format(range.from, 'yyyy-MM-dd') : undefined;
+                  const t = range?.to ? format(range.to, 'yyyy-MM-dd') : undefined;
+                  setFrom(f);
+                  setTo(t);
+                  setPage(1);
+               }}
+               numberOfMonths={2}
+            />
          </PopoverContent>
       </Popover>
    );
