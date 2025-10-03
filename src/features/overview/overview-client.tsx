@@ -57,7 +57,7 @@ export default function OverviewClient({ initial }: { initial: APIData | null })
          setLoading(false);
       }
    }
-   useEffect(() => { if (!initial) refresh(); }, []); // first load if needed
+   useEffect(() => { if (!initial) refresh(); }, [initial]); // first load if needed
 
    const COLORS = ['hsl(var(--primary))','hsl(var(--muted-foreground))','hsl(var(--secondary))','hsl(var(--accent))','hsl(var(--destructive))'];
 

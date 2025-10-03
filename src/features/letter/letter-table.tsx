@@ -36,6 +36,8 @@ type LetterRow = {
    global_serial: number;
    daily_serial: number;
    created_at: string;
+   created_by: string | null;
+   purpose: string | null;
 };
 
 type InitialParams = {
@@ -51,7 +53,7 @@ type InitialParams = {
 const ALL_CATS = "__ALL__";
 const ALL_DIVS = "__ALL_DIV__";
 
-const TABLE_HEIGHT_PX = 560;       // tinggi tetap kontainer tabel (scroll di dalam)
+const TABLE_HEIGHT_PX = 560;       
 const HEADER_H = 44;               // tinggi header tabel ~ px
 const ROW_H = 48;                  // tinggi baris ~ px
 const VISIBLE_ROWS = Math.floor((TABLE_HEIGHT_PX - HEADER_H) / ROW_H); // utk skeleton & dummy rows
@@ -136,6 +138,8 @@ export default function LettersTable({ initialParams }: { initialParams: Initial
             global_serial: it.global_serial,
             daily_serial: it.daily_serial,
             created_at: it.created_at,
+            created_by: it.created_by ?? null,
+            purpose: it.purpose ?? null,
          }));
 
          setRows(mapped);
@@ -207,8 +211,7 @@ export default function LettersTable({ initialParams }: { initialParams: Initial
                setPage(1);
             }}
             numberOfMonths={2}
-            initialFocus
-         />
+          />
          </PopoverContent>
       </Popover>
    );
@@ -298,7 +301,7 @@ export default function LettersTable({ initialParams }: { initialParams: Initial
             {/* Reset */}
             <div className="flex gap-2 justify-end">
                <Button variant="secondary" className="gap-2" onClick={resetFilters}>
-               <IconRefresh className="h-4 w-4" /> Reset
+                  <IconRefresh className="h-4 w-4" /> Reset
                </Button>
             </div>
          </div>
@@ -313,6 +316,7 @@ export default function LettersTable({ initialParams }: { initialParams: Initial
                         <TableHead style={{ width: 120 }}>Tanggal</TableHead>
                         <TableHead style={{ width: 120 }}>Kategori</TableHead>
                         <TableHead style={{ width: 140 }}>Divisi</TableHead>
+                        <TableHead style={{ width: 160 }}>Dibuat oleh</TableHead>
                         <TableHead style={{ width: 120 }} className="text-right">Global</TableHead>
                         <TableHead style={{ width: 120 }} className="text-right">Harian</TableHead>
                      </TableRow>
@@ -356,8 +360,13 @@ export default function LettersTable({ initialParams }: { initialParams: Initial
                                     </span>
                                  </div>
                               </TableCell>
-                              <TableCell className="text-right font-mono">{r.global_serial}</TableCell>
-                              <TableCell className="text-right font-mono">{r.daily_serial}</TableCell>
+                              <TableCell>{r.created_by ?? "-"}</TableCell>
+                              <TableCell className="text-right font-mono">
+                                 {r.global_serial}
+                              </TableCell>
+                              <TableCell className="text-right font-mono">
+                                 {r.daily_serial}
+                              </TableCell>
                            </TableRow>
                         ))}
                         {/* dummy rows untuk jaga tinggi tabel */}

@@ -1,5 +1,5 @@
 import PageContainer from "@/components/layout/page-container";
-import GenerateForm from "@/features/generate/generate-from";
+import GenerateForm from "@/features/generate/generate-form";
 
 
 export default async function GeneratePage() {

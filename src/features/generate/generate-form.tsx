@@ -47,6 +47,7 @@ import {
 import { format } from 'date-fns';
 import { id as idLocale } from 'date-fns/locale';
 import { toast } from 'sonner';
+import { Textarea } from '@/components/ui/textarea';
 
 type MasterCategory = { code: string; name: string };
 type MasterDivision = { id: string; code: string; name: string };
@@ -65,6 +66,7 @@ const schema = z.object({
    categoryCode: z.string().min(1, 'Pilih kategori'),
    divisionCode: z.string().min(1, 'Pilih divisi'),
    issueDate: z.date().optional(),
+   purpose: z.string().max(300, 'Maksimal 300 karakter').optional(), // NEW
 });
 type FormValues = z.infer<typeof schema>;
 
@@ -86,6 +88,7 @@ export default function GenerateForm() {
          categoryCode: '',
          divisionCode: '',
          issueDate: new Date(),
+         purpose: '',  // NEW
       },
    });
 
@@ -123,27 +126,26 @@ export default function GenerateForm() {
             setLoadingHistory(true);
             const res = await fetch('/api/numbers?limit=8', { cache: 'no-store' });
             const json = await res.json();
-               if (res.ok) {
-                  const items: LetterItem[] = (json.items ?? []).map((it:any) => ({
-                     id: it.id,
-                     number: it.number_text ?? it.number,
-                     issuedOn: it.issued_on ?? it.issuedOn,
-                     category: it.category_code ?? it.category,
-                     divisionId: it.division_id ?? it.divisionId,
-                     globalSerial: it.global_serial ?? it.globalSerial,
-                     dailySerial: it.daily_serial ?? it.dailySerial,
-                  }));
-                  setHistory(items);
-               } else {
-                  setHistory([]);
-               }
-            } catch {
+            if (res.ok) {
+               const items: LetterItem[] = (json.items ?? []).map((it:any) => ({
+                  id: it.id,
+                  number: it.number_text ?? it.number,
+                  issuedOn: it.issued_on ?? it.issuedOn,
+                  category: it.category_code ?? it.category,
+                  divisionId: it.division_id ?? it.divisionId,
+                  globalSerial: it.global_serial ?? it.globalSerial,
+                  dailySerial: it.daily_serial ?? it.dailySerial,
+               }));
+               setHistory(items);
+            } else {
                setHistory([]);
-            } finally {
-               setLoadingHistory(false);
             }
+         } catch {
+            setHistory([]);
+         } finally {
+            setLoadingHistory(false);
+         }
       })();
-       
    }, []);
 
    async function onSubmit(values: FormValues) {
@@ -153,6 +155,7 @@ export default function GenerateForm() {
             categoryCode: values.categoryCode,
             divisionCode: values.divisionCode,
             issueDate: values.issueDate ? format(values.issueDate, 'yyyy-MM-dd') : undefined,
+            purpose: values.purpose || undefined,
          };
 
          const res = await fetch('/api/numbers', {
@@ -354,6 +357,19 @@ export default function GenerateForm() {
                      />
                      </PopoverContent>
                   </Popover>
+
+                  <div className="grid gap-2 sm:col-span-2">
+                     <Label>Alasan / Ringkas</Label>
+                     <Textarea
+                        placeholder="Contoh: Surat undangan rapat koordinasi program kerja Q4."
+                        className="resize-none"
+                        rows={3}
+                        {...form.register('purpose')}
+                     />
+                     <div className="text-xs text-muted-foreground text-right">
+                        {(form.watch('purpose')?.length ?? 0)}/300
+                     </div>
+                  </div>
                </div>
 
                <div className="sm:col-span-2 flex gap-2 pt-2">
