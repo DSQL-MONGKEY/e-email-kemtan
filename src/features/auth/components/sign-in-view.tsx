@@ -1,4 +1,3 @@
-import Silk from '@/components/Silk';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { SignIn as ClerkSignInForm } from '@clerk/nextjs';
@@ -24,14 +23,6 @@ export default function SignInViewPage() {
          </Link>
          <div className='bg-muted relative hidden h-full flex-col p-10 text-white lg:flex dark:border-r'>
             <div className='absolute inset-0 bg-zinc-900' />
-            <Silk
-               speed={5}
-               scale={1}
-               color="#7B7481"
-               noiseIntensity={1.5}
-               rotation={0}
-               
-            />
                <div className='relative z-20 flex items-center text-lg font-medium'>
                   <svg  
                      xmlns="http://www.w3.org/2000/svg"
