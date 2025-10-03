@@ -57,7 +57,6 @@ export default function SignInViewPage() {
                      <p className='text-lg'>
                         &ldquo;Fortis Fortuna Adiuvat&rdquo;
                      </p>
-                     <footer className='text-sm'>Random Dude</footer>
                   </blockquote>
                </div>
             </div>
