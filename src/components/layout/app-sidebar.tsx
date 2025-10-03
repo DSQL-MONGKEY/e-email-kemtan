@@ -40,7 +40,7 @@ export function AppSidebar() {
                   alt="logo-kemtan"
                />
                <SheetTitle className="text-lg font-semibold">
-                  E-email KEMTAN
+                  E-email KEMENTAN
                </SheetTitle>
                {/* <SheetDescription>Menu dan profil</SheetDescription> */}
             </SheetHeader>

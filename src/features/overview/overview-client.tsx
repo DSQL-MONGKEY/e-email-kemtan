@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import {
-  Card, CardContent, CardDescription, CardHeader, CardTitle
+   Card, CardContent, CardDescription, CardHeader, CardTitle
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -104,11 +104,11 @@ export default function OverviewClient({ initial }: { initial: APIData | null })
                <div className="h-[260px]">
                   <ResponsiveContainer width="100%" height="100%">
                      <LineChart data={data.series30}>
-                     <CartesianGrid strokeDasharray="3 3" />
-                     <XAxis dataKey="date" tick={{ fontSize: 12 }} />
-                     <YAxis allowDecimals={false} tick={{ fontSize: 12 }} />
-                     <Tooltip />
-                     <Line type="monotone" dataKey="count" stroke="hsl(var(--primary))" strokeWidth={2} dot={false} />
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+                        <YAxis allowDecimals={false} tick={{ fontSize: 12 }} />
+                        <Tooltip wrapperStyle={{ borderRadius: 20 }} />
+                        <Line type="monotone" dataKey="count" stroke="hsl(var(--primary))" strokeWidth={2} dot={true} />
                      </LineChart>
                   </ResponsiveContainer>
                </div>
@@ -128,9 +128,9 @@ export default function OverviewClient({ initial }: { initial: APIData | null })
                <div className="h-[260px]">
                   <ResponsiveContainer width="100%" height="100%">
                      <PieChart>
-                     <Pie data={data.topCategories} dataKey="count" nameKey="code" outerRadius={100} innerRadius={55}>
-                        {data.topCategories.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
-                     </Pie>
+                        <Pie data={data.topCategories} dataKey="count" nameKey="code" outerRadius={100} innerRadius={55}>
+                           {data.topCategories.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
+                        </Pie>
                      <Tooltip />
                      </PieChart>
                   </ResponsiveContainer>

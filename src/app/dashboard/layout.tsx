@@ -2,8 +2,8 @@ import Header from '@/components/layout/header';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Dashboard | E-numail KEMTAN',
-  description: 'Dashboard e-numail Kementrian Pertanian'
+  title: 'Dashboard | E-numail KEMENTAN',
+  description: 'Dashboard e-email Kementrian Pertanian RI'
 };
 
 export default async function DashboardLayout({

@@ -357,9 +357,8 @@ export default function GenerateForm() {
                      />
                      </PopoverContent>
                   </Popover>
-               </div>
 
-               <div className="grid gap-2 sm:col-span-2">
+                  <div className="grid gap-2 sm:col-span-2">
                      <Label>Alasan / Ringkas</Label>
                      <Textarea
                         placeholder="Contoh: Surat undangan rapat koordinasi program kerja Q4."
@@ -371,6 +370,7 @@ export default function GenerateForm() {
                         {(form.watch('purpose')?.length ?? 0)}/300
                      </div>
                   </div>
+               </div>
 
                <div className="sm:col-span-2 flex gap-2 pt-2">
                   <Button disabled={submitting} type="submit" className="gap-2">

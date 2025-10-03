@@ -210,7 +210,7 @@ export default function LettersTable({ initialParams }: { initialParams: Initial
                   setTo(t);
                   setPage(1);
                }}
-               numberOfMonths={2}
+               numberOfMonths={1}
             />
          </PopoverContent>
       </Popover>
@@ -316,6 +316,7 @@ export default function LettersTable({ initialParams }: { initialParams: Initial
                         <TableHead style={{ width: 120 }}>Tanggal</TableHead>
                         <TableHead style={{ width: 120 }}>Kategori</TableHead>
                         <TableHead style={{ width: 140 }}>Divisi</TableHead>
+                        <TableHead style={{ width: 140 }}>Ringkasan</TableHead>
                         <TableHead style={{ width: 160 }}>Dibuat oleh</TableHead>
                         <TableHead style={{ width: 120 }} className="text-right">Global</TableHead>
                         <TableHead style={{ width: 120 }} className="text-right">Harian</TableHead>
@@ -360,6 +361,7 @@ export default function LettersTable({ initialParams }: { initialParams: Initial
                                     </span>
                                  </div>
                               </TableCell>
+                              <TableCell>{r.purpose ?? "-"}</TableCell>
                               <TableCell>{r.created_by ?? "-"}</TableCell>
                               <TableCell className="text-right font-mono">
                                  {r.global_serial}
